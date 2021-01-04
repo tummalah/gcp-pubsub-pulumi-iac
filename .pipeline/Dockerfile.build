@@ -4,6 +4,7 @@ ARG GCP_KEY={"test":"test"}
 ARG PULUMI_KEY
 COPY . /source
 WORKDIR /source
+RUN mkdir gcp
 RUN echo $GCP_KEY > ./gcp/gcpKey.json
 ENV GCLOUD_KEYFILE_JSON ./gcp/gcpKey.json
 ENV PULUMI_KEY $PULUMI_KEY

@@ -1,0 +1,57 @@
+groups: []
+resources:
+- name: meta
+  type: meta
+  source: {}
+- name: repo
+  type: git-multibranch
+  source:
+    branches: master
+    private_key: ((git.private_key))
+    uri: git@github.com:tummalah/gcp-pubsub-pulumi-iac.git
+  check_every: 1m
+resource_types:
+- name: git-multibranch
+  type: docker-image
+  source:
+    repository: cfcommunity/git-multibranch-resource
+- name: meta
+  type: docker-image
+  source:
+    repository: swce/metadata-resource
+jobs:
+- name: pipeline
+  serial: true
+  plan:
+  - in_parallel:
+      steps:
+      - get: meta
+      - get: repo
+        trigger: true
+  - task: task
+    privileged: true
+    config:
+      platform: linux
+      image_resource:
+        type: docker-image
+        source:
+          #repository: registry.mckesson.com/devservices/mcklabs-concourse-dind
+          repository: mck-developer-services-docker.jfrog.io/mcklabs-concourse-dind
+          username: ((mck-pipeline-secrets.DOCKER_JFROG_USER))
+          password: ((mck-pipeline-secrets.DOCKER_JFROG_PASSWORD))
+          tag: prod
+      params:
+        MCK_PIPELINE_SECRETS: ((pulumi-secrets))
+        MCK_DOCKER_USERNAME: ((mck-pipeline-secrets.DOCKER_JFROG_USER))
+        MCK_DOCKER_PASSWORD: ((mck-pipeline-secrets.DOCKER_JFROG_PASSWORD))
+      run:
+        path: entrypoint.sh
+        args:
+        - bash
+        - -ceu
+        - |-
+          cd repo
+          flume build --secrets "$MCK_PIPELINE_SECRETS" --meta "$MCK_PIPELINE_META" --lana_url https://prd-lana.app.prod-west.paas.mckesson.com/
+      inputs:
+      - name: repo
+      - name: meta

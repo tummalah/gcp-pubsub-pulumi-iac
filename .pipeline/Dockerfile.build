@@ -1,6 +1,6 @@
 #FROM registry.mckesson.com/devservices/mcklabs-node-dind-pipeline-base:0.0.1
 FROM mck-developer-services-docker.jfrog.io/mcklabs-node-dind-pipeline-base:3.0.0
-ARG GCP_KEY
+ARG GCP_KEY={"test":"test"}
 ARG PULUMI_KEY
 COPY . /source
 WORKDIR /source

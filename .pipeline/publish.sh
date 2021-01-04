@@ -12,5 +12,5 @@ trap 'handle_error $LINENO' ERR
 echo "-------------------------------------------------"
 echo "       Running ${0##*/}"
 echo "-------------------------------------------------"
-
+echo PULUMI_ACCESS_TOKEN
 npm install && pulumi preview -s dev"

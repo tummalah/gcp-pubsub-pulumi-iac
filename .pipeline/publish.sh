@@ -13,4 +13,4 @@ echo "-------------------------------------------------"
 echo "       Running ${0##*/}"
 echo "-------------------------------------------------"
 echo PULUMI_ACCESS_TOKEN
-npm install && pulumi preview -s dev"
+npm install && pulumi preview -s dev

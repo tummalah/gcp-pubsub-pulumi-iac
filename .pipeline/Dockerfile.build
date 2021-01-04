@@ -1,14 +1,15 @@
 #FROM registry.mckesson.com/devservices/mcklabs-node-dind-pipeline-base:0.0.1
-FROM mck-developer-services-docker.jfrog.io/mcklabs-node-dind-pipeline-base:3.0.0
+FROM mck-developer-services-docker.jfrog.io/mcklabs-node-dind-pipeline-base:3.0.0 AS base
 ARG GCP_KEY={"test":"test"}
-ARG PULUMI_KEY
 COPY . /source
 WORKDIR /source
 RUN mkdir gcp
 RUN echo $GCP_KEY > ./gcp/gcpKey.json
-ENV GCLOUD_KEYFILE_JSON ./gcp/gcpKey.json
-FROM pulumi/pulumi-base:2.16.2
-COPY . /pulumi/projects
+
+FROM pulumi/pulumi-base:2.16.2 AS pulumi
+WORKDIR /pulumi/projects
+COPY --from=base /source .
+ARG PULUMI_KEY
 ENV PULUMI_ACCESS_TOKEN $PULUMI_KEY
 WORKDIR /pulumi/projects
 RUN  cd .pipeline && chmod +x *.sh && cd ..

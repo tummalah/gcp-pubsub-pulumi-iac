@@ -7,6 +7,8 @@ WORKDIR /source
 RUN mkdir gcp
 RUN echo $GCP_KEY > ./gcp/gcpKey.json
 ENV GCLOUD_KEYFILE_JSON ./gcp/gcpKey.json
-ENV PULUMI_KEY $PULUMI_KEY
 RUN  cd .pipeline && chmod +x *.sh && cd ..
-RUN docker pull pulumi/pulumi-base
+FROM pulumi/pulumi-base:2.16.2
+COPY . /pulumi/projects
+RUN echo $PULUMI_KEY
+ENV PULUMI_KEY $PULUMI_KEY

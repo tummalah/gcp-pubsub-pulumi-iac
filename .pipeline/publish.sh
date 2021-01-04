@@ -13,6 +13,4 @@ echo "-------------------------------------------------"
 echo "       Running ${0##*/}"
 echo "-------------------------------------------------"
 
-
-
-docker run -e PULUMI_ACCESS_TOKEN=$PULUMI_KEY -v "$(pwd)":/pulumi/projects $IMG /bin/bash -c "npm ci && pulumi preview -s dev"
+npm install && pulumi preview -s dev"

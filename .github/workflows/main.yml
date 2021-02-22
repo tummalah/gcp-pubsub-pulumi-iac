@@ -5,7 +5,7 @@ on:
     - master
 jobs:
   preview:
-    name: Pubsub Preview
+    name: Pubsub
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -18,4 +18,4 @@ jobs:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
           
           PULUMI_ACCESS_TOKEN: ${{ secrets.PULUMI_ACCESS_TOKEN }}
-          IS_PR_WORKFLOW: false
+          

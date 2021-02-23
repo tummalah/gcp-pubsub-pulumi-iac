@@ -13,7 +13,7 @@ jobs:
           fetch-depth: 1
       - uses: pulumi/actions@v1
         with:
-          command: up -s dev
+          command: destroy -s dev
         env:
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
           

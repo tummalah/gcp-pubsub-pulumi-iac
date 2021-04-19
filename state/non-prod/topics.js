@@ -2,18 +2,18 @@ exports.topics= () => {
 
     return [
         {
-            topic: "example",
+            topic: "demo1",
             attributes: {
                 labels: {
-                    foo: "bar",
+                    test: "test",
                 }
             },
             subscription:{
-                name: "example-sub",
-               attributes:{ topic: "example",
-                ackDeadlineSeconds: 20,
+                name: "demo-sub1",
+               attributes:{ topic: "demo1",
+                ackDeadlineSeconds: 30,
                 labels: {
-                    foo: "bar",
+                    test: "test",
                 },
                 // expirationPolicy: {
                 //     ttl: "300000.5s",

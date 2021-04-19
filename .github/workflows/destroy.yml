@@ -1,5 +1,7 @@
 name: DestroyState
-
+on:
+ workflow_dispatch:
+  
  
 jobs:
   destroyState:

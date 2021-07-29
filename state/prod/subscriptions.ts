@@ -8,7 +8,7 @@ export const subscriptions = (): [Subscription]  => {
            attributes:{ topic: "example",
             ackDeadlineSeconds: 20,
             labels: {
-                foo: "bar",
+                foo: "prod",
             },
             // expirationPolicy: {
             //     ttl: "300000.5s",

@@ -1,6 +1,6 @@
 
 import {Topic} from '../types';
- export const topics= (): [Topic]  => {
+ export const topics = (): [Topic]  => {
 
     return [
         {
@@ -8,7 +8,7 @@ import {Topic} from '../types';
          
             attributes: {
                 labels: {
-                    foo: "bar",
+                    foo: "prod",
                 }
             }
     }

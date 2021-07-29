@@ -1,5 +1,5 @@
 import * as gcp  from "@pulumi/gcp";
-import { Topic } from "./state/non-prod/topics";
+import { Topic } from "./state/types";
 import {IConfigData,ConfigReader} from "./ConfigReader"
  
 export class TopicCollection {
@@ -7,16 +7,19 @@ export class TopicCollection {
     constructor(public configData: IConfigData){}
 
     static getTopics(stack: string) : TopicCollection{
-       return new TopicCollection(new ConfigReader('Topic') )
+       return new TopicCollection(new ConfigReader('Topic',stack) )
     }
 
-    getCollection(): [Topic] {
-         this.configData.readConfig();
-         return this.configData.configData as [Topic];
+    async getCollection(): Promise<[Topic]> {
+        await this.configData.readConfig();
+        return this.configData.configData as [Topic]
+         
     }
 
-    getPubSubTopics(): gcp.pubsub.Topic[]{
+    async getPubSubTopics(): Promise<gcp.pubsub.Topic[]>{
 
-      return  this.getCollection().map(topic => new gcp.pubsub.Topic(topic.topic, topic.attributes) )
+     const topics =await this.getCollection();
+    const pubsubTopics= topics.map(topic => new gcp.pubsub.Topic(topic.topic, topic.attributes));
+    return pubsubTopics;
     }
 }

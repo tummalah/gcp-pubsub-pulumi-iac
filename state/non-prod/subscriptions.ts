@@ -4,8 +4,9 @@ export const subscriptions = (): [Subscription]  => {
 
     return [
         {
-            name: "example-sub",
-           attributes:{ topic: "example",
+            name: "orders-sub",
+           attributes:{ topic: "orders",
+           name: "orders-sub",
             ackDeadlineSeconds: 20,
             labels: {
                 foo: "bar",

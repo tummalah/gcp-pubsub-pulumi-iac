@@ -6,6 +6,7 @@ export const subscriptions = (): [Subscription]  => {
         {
             name: "example-sub",
            attributes:{ topic: "example",
+           name: "example-sub",
             ackDeadlineSeconds: 20,
             labels: {
                 foo: "prod",

@@ -4,12 +4,13 @@ import {Topic} from '../types';
 
     return [
         {
-            topic: "example",
-         
+            topic: "orders",
+            
             attributes: {
                 labels: {
                     foo: "bar",
-                }
+                },
+                name: "orders"
             }
     }
     

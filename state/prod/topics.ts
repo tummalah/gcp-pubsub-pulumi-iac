@@ -9,7 +9,8 @@ import {Topic} from '../types';
             attributes: {
                 labels: {
                     foo: "prod",
-                }
+                },
+                name: "example"
             }
     }
     

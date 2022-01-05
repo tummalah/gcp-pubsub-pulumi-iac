@@ -1,8 +1,19 @@
 {
     "name": "create-pubsub-topic",
-    
+    "main": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "scripts": {
+        "build": "tsc"
+        
+      },
     "dependencies": {
         "@pulumi/pulumi": "^2.0.0",
         "@pulumi/gcp": "^4.0.0"
-    }
+    },
+    "devDependencies": {
+        "@types/node": "^17.0.8"
+    },
+    "files": [
+        "dist/**/*"
+      ]
 }

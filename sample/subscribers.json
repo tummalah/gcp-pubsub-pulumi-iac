@@ -1,0 +1,10 @@
+[{
+    "name":"sample-sub1",
+    "attributes":{
+      "topic":"sample-1",
+      "name":"sample-sub1",
+      "ackDeadlineSeconds":200,
+      "labels":{}
+    }
+  }
+]

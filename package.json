@@ -1,14 +1,25 @@
 {
-    "name": "create-pubsub-topic",
+    "name": "@tummalah/create-pubsub-topic",
     "main": "dist/index.js",
     "types": "dist/index.d.ts",
     "scripts": {
         "build": "tsc"
         
       },
+      "publishConfig": {
+        "registry":"https://npm.pkg.github.com"
+      },
+      "repository": {
+        "type": "git",
+        "url": "git://github.com/tummalah/gcp-pubsub-pulumi-iac.git"
+      },
     "dependencies": {
         "@pulumi/pulumi": "^2.0.0",
         "@pulumi/gcp": "^4.0.0"
+    },
+    "peerDependencies": {
+      
+      "@pulumi/gcp": ">=4.0.0"
     },
     "devDependencies": {
         "@types/node": "^17.0.8"

@@ -1,8 +1,7 @@
 import { TopicCollection } from "../src";
 import { SubscriptionCollection } from "../src";
 
-import { Stack } from "./Stack";
-const stack = Stack.getStack();
+
 
 const topicCollection= TopicCollection.getTopics('topics.json');
 const topics= topicCollection.getPubSubTopics();

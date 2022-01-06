@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "@pulumi/gcp": "^4.0.0",
-    "@pulumi/pulumi": "^2.25.2"
+    "typescript": "^4.5.4"
   },
   "peerDependencies": {
     "@pulumi/gcp": ">=4.0.0"

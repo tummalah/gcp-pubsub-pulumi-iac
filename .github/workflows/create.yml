@@ -1,8 +1,7 @@
 name: ExecuteState
 on:
  
- push:
-  branches: master
+ workflow_dispatch:
  
 jobs:
   desiredState:
@@ -12,6 +11,10 @@ jobs:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 1
+      - name: Change to Samples
+      
+        run: |
+          cd sample
       - uses: pulumi/actions@v1
         with:
           command: up -s dev

@@ -1,5 +1,6 @@
 {
   "name": "@tummalah/create-pubsub-topic",
+  "version": "0.1.0",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -8,7 +9,7 @@
     "prepare": "husky install"
   },
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com"
+    "registry": "https://npm.pkg.github.com/tummalah"
   },
   "repository": {
     "type": "git",

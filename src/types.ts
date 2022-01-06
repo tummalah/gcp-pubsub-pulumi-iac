@@ -3,7 +3,8 @@ export type Topic= {
     attributes: {
         labels: {
       
-        }
+        },
+        name: string
     }
 
 
@@ -13,6 +14,7 @@ export type Subscription= {
     name: string,
    attributes:{ 
        topic: string,
+       name: string,
     ackDeadlineSeconds: number,
     labels: {
        

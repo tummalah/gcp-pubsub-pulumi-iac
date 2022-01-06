@@ -1,0 +1,7 @@
+name: create-pubsub-topic
+description: A sample program to create pubsub topics and subscriptions.
+main: sample.ts # sample.ts when typescript is true
+runtime:
+    name: nodejs
+    options:
+        typescript: true

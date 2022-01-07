@@ -1,6 +1,7 @@
 
 
 import {readFileSync} from 'fs';
+import { isJSON } from './types';
 
 
 export interface IConfigData {
@@ -27,11 +28,16 @@ export class ConfigReader implements IConfigData {
     }
 
     private  getConfig(configpath: string): []  {
-        let config: [] ;
+        let config: [] =[] ;
         const fileData : string= readFileSync(configpath,{encoding: 'utf-8'});
+        if (isJSON(fileData)){
+    
         config= JSON.parse(fileData);
-
         return config;
+        }
+        else {
+            return config;
+        }
 
     }
     

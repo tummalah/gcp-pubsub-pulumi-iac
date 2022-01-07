@@ -10,5 +10,5 @@ const subs= subscriptionCollection.getPubSubSubscriptions();
 
 export = async () => {
     // create resources
-    return { topics: topics.map(topic=>topic.name), subs: subs.map(sub=> sub.name) };
+    return { topics: topics.map(topic=>topic.name),subs: subs.map(sub=> sub.name) };
 }

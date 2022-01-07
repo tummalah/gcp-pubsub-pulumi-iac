@@ -1,3 +1,15 @@
+type JSONPrimitive = string | number | boolean | null
+type JSONObject = { [k: string]: JSONValue | JSONPrimitive }
+type JSONArray = JSONPrimitive[] | JSONObject[]
+type JSONValue = JSONArray | JSONObject | JSONPrimitive
+
+
+export function isJSON(arg: JSONValue): arg is JSONValue { 
+ return true
+
+};
+
+
 export type Topic= {
     topic: string,
     attributes: {
@@ -8,7 +20,21 @@ export type Topic= {
     }
 
 
-}
+};
+
+export function isTopic(valueToTest: any): valueToTest is Topic { 
+
+    return (
+        valueToTest &&
+        typeof valueToTest === "object" &&
+        "topic" in valueToTest &&
+        typeof valueToTest["topic"] === "string" &&
+        "attributes" in valueToTest &&
+        typeof valueToTest["attributes"].name === "string"
+      )
+      
+   
+   };
 
 export type Subscription= {
     name: string,
@@ -33,3 +59,19 @@ export type Subscription= {
     messageRetentionDuration?: string
 }
 };
+
+export function isSubscription(valueToTest: any): valueToTest is Topic { 
+   
+    return (
+        valueToTest &&
+        typeof valueToTest === "object" &&
+        "name" in valueToTest &&
+        typeof valueToTest["name"] === "string" &&
+        "attributes" in valueToTest &&
+        typeof valueToTest["attributes"].topic === "string" &&
+        typeof valueToTest["attributes"].name === "string" &&
+        typeof valueToTest["attributes"].ackDeadlineSeconds === "number"
+      )
+      
+   
+   };

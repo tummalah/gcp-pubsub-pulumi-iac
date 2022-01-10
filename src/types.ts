@@ -75,3 +75,15 @@ export function isSubscription(valueToTest: any): valueToTest is Topic {
       
    
    };
+
+  export enum errTypes{
+    invalidFile= 'File is not JSON',
+    invalidTopic= 'Invalid data found in Topic',
+    invalidSubscription= 'Invalid data found in Subscription'
+  }
+ export class ErrFactory {
+  
+    static getErr(errType : errTypes){
+      return new Error(errType)
+    }
+  }

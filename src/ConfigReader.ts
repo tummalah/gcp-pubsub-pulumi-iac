@@ -1,7 +1,7 @@
 
 
 import {readFileSync} from 'fs';
-import { isJSON } from './types';
+import { isJSON , errTypes,ErrFactory} from './types';
 
 
 export interface IConfigData {
@@ -36,7 +36,7 @@ export class ConfigReader implements IConfigData {
         return config;
         }
         else {
-            return config;
+            throw ErrFactory.getErr(errTypes.invalidFile)
         }
 
     }

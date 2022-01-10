@@ -1,5 +1,5 @@
 import * as gcp  from "@pulumi/gcp";
-import { Topic, isTopic } from "./types";
+import { Topic, isTopic,errTypes,ErrFactory } from "./types";
 import {IConfigData,ConfigReader} from "./ConfigReader"
  
 export class TopicCollection {
@@ -24,25 +24,18 @@ export class TopicCollection {
         if (checkpoint.length=== this.configData.configData.length ){
             console.log('line 25')
             return this.configData.configData as Topic[]
-        } else { return [] }
+        } else { throw ErrFactory.getErr(errTypes.invalidTopic) }
 
 
         
          }
 
     getPubSubTopics(): gcp.pubsub.Topic[]{
-    try{
+  
      const topics =this.getCollection();
-     if (topics.length>0){
+  
     const pubsubTopics= topics.map(topic => new gcp.pubsub.Topic(topic.topic, topic.attributes));
     return pubsubTopics;
-     }
-    else{
-        throw new Error("No Topic data found in File")
-    }
-    
-    } catch(e){
-        throw e
-    }
+   
 }
 }

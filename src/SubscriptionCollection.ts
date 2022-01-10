@@ -1,5 +1,5 @@
 import * as gcp  from "@pulumi/gcp";
-import { Subscription,isSubscription } from "./types";
+import { Subscription,isSubscription,errTypes,ErrFactory } from "./types";
 import {IConfigData,ConfigReader} from "./ConfigReader"
 
 
@@ -23,9 +23,9 @@ export class SubscriptionCollection {
       }
       
       if (checkpoint.length=== this.configData.configData.length ){
-          console.log('line 25')
+         
           return this.configData.configData as Subscription[]
-      } else { return [] }
+      } else { throw ErrFactory.getErr(errTypes.invalidSubscription) }
 
 
       
@@ -33,19 +33,10 @@ export class SubscriptionCollection {
 
    getPubSubSubscriptions(): gcp.pubsub.Subscription[]{
 
-      try{
          const subscriptions = this.getCollection();
-         if (subscriptions.length>0){
+         
             const pubsubSubscriptions= subscriptions.map(sub => new gcp.pubsub.Subscription(sub.name, sub.attributes));
             return pubsubSubscriptions;
-         }
-         else{
-            throw new Error('No Subscriptions data found in file')
-         }
-      }
-      catch(e){
-         throw e
-      }
    
 
    }
